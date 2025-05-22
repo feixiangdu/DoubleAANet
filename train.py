@@ -12,7 +12,7 @@ from torch.utils.data import Dataset, DataLoader
 from text2embed import Text2Embed
 from utils import seeding, create_dir, print_and_save, shuffling, epoch_time, calculate_metrics, label_dictionary, \
     mask_to_bbox
-from model import TGAPolypSeg
+from model import DoubleAAPolypSeg
 from metrics import DiceLoss, DiceBCELoss, MultiClassBCE
 
 
@@ -291,7 +291,7 @@ if __name__ == "__main__":
     path = "./dataset/%s" % (dataset_name)
     #######
     # checkpoint_path = "files/resnet50.pth"
-    # path = "/root/data/dfx/TGANet/dataset/Kvasir-SEG"
+    
 
     data_str = f"Image Size: {size}\nBatch Size: {batch_size}\nLR: {lr}\nEpochs: {num_epochs}\n"
     data_str += f"Early Stopping Patience: {early_stopping_patience}\n"
@@ -331,7 +331,7 @@ if __name__ == "__main__":
 
     """ Model """
     device = torch.device('cuda:4')
-    model = TGAPolypSeg()
+    model = DoubleAAPolypSeg()
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)

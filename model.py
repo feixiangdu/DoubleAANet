@@ -248,7 +248,7 @@ class multiscale_feature_aggregation(nn.Module):
 
         return x
 
-class TGAPolypSeg(nn.Module):
+class DoubleAAPolypSeg(nn.Module):
     def __init__(self):
         super().__init__()
 
@@ -345,7 +345,7 @@ def prepare_input(res):
 if __name__ == "__main__":
     # x = torch.randn((4, 3, 256, 256))
     # l = torch.randn((4, 5, 300))
-    # model = TGAPolypSeg()
+    # model = DoubleAAPolypSeg()
     #
     # from ptflops import get_model_complexity_info
     # flops, params = get_model_complexity_info(model, input_res=(3, 256, 256), input_constructor=prepare_input, as_strings=True, print_per_layer_stat=False)
@@ -354,7 +354,7 @@ if __name__ == "__main__":
 
     from ptflops import get_model_complexity_info
 
-    model = TGAPolypSeg().cuda()
+    model = DoubleAAPolypSeg().cuda()
     flops, params = get_model_complexity_info(model, input_res=(512, 512),
                                               input_constructor=prepare_input,
                                               as_strings=True, print_per_layer_stat=False)
